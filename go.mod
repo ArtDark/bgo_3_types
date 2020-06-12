@@ -1,0 +1,1 @@
+module "github.com/ArtDark/bgo_3_types"
