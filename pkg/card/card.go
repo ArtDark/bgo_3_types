@@ -8,4 +8,17 @@ type Transaction struct {
 	Mcc string
 	Status string
 
+
 }
+
+type Card struct {
+	Id           int64
+	Issuer       string
+	Balance      int64
+	Currency     string
+	Number       string
+	Icon         string
+	Transactions []Transaction
+}
+
+
