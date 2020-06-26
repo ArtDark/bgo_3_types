@@ -2,7 +2,7 @@ package card
 
 
 type Transaction struct {
-	Id int64
+	Id string
 	Bill int64
 	Time int64
 	Mcc string
@@ -19,6 +19,10 @@ type Card struct {
 	Number       string
 	Icon         string
 	Transactions []Transaction
+}
+
+func AddTransaction(card *Card, transaction *Transaction) {
+	card.Transactions = append(card.Transactions, *transaction)
 }
 
 
