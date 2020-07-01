@@ -1,6 +1,5 @@
 package card
 
-
 type Transaction struct {
 	Id string
 	Bill int64
@@ -25,5 +24,20 @@ func AddTransaction(card *Card, transaction Transaction) {
 	card.Transactions = append(card.Transactions, transaction)
 }
 
+func SumByMCC(transactions []Transaction, mcc []string)  int64{
+	var mmcSum int64
 
+	for _, code := range mcc {
+		for _, t := range transactions {
+			//fmt.Println(code)
+			//fmt.Println(t.Mcc)
+			if code == t.Mcc {
+				mmcSum += t.Bill
+			}
+		}
+	}
+
+	return mmcSum
+
+}
 
