@@ -6,14 +6,14 @@ import (
 )
 
 func main() {
-	var master = &card.Card{
+	master := card.Card{
 		Id:       0001,
 		Issuer:   "MasterCard",
 		Balance:  43_422_43,
 		Number:   "2720_9955_9454_5218",
 		Currency: "RUB",
 		Icon:     "http://...",
-		Transactions: []card.Transaction {
+		Transactions: []card.Transaction{
 			card.Transaction{
 				Id:     "1",
 				Bill:   1_203_91,
@@ -30,8 +30,9 @@ func main() {
 			},
 		},
 	}
-	fmt.Println(master)
-	transaction := &card.Transaction{
+	masterPointer := &master
+
+	transaction := card.Transaction{
 		Id:     "5",
 		Bill:   233_43,
 		Time:   1596773221,
@@ -39,7 +40,7 @@ func main() {
 		Status: "Valid",
 	}
 
-    fmt.Println(transaction)
-	card.AddTransaction(master, transaction)
-	fmt.Println(master)
+	fmt.Println("MasterCard: ", master)
+	card.AddTransaction(masterPointer, transaction)
+	fmt.Println("MasterCard: ", master)
 }

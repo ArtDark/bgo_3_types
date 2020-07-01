@@ -21,8 +21,9 @@ type Card struct {
 	Transactions []Transaction
 }
 
-func AddTransaction(card *Card, transaction *Transaction) {
-	card.Transactions = append(card.Transactions, *transaction)
+func AddTransaction(card *Card, transaction Transaction) {
+	card.Transactions = append(card.Transactions, transaction)
 }
+
 
 
