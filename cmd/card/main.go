@@ -43,4 +43,10 @@ func main() {
 	fmt.Println("MasterCard: ", master)
 	card.AddTransaction(masterPointer, transaction)
 	fmt.Println("MasterCard: ", master)
+
+	mcc := []string{"5411", "582"}
+
+	cashBack := card.SumByMCC(master.Transactions, mcc)
+	fmt.Println("Cashback sum:", cashBack)
+
 }
