@@ -28,6 +28,14 @@ func main() {
 				MCC:    "5411",
 				Status: "Valid",
 			},
+			card.Transaction{
+				Id:     "4",
+				Bill:   455_99,
+				Time:   1592842454,
+				MCC:    "5931",
+				Status: "Valid",
+
+			},
 		},
 	}
 	masterPointer := &master
