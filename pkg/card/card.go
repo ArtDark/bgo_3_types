@@ -46,5 +46,13 @@ func TranslateMCC(code string) string {
 
 	}
 
-	return mcc[code]
+	value, ok := mcc[code]
+
+	if ok {
+		return value
+	} else {
+		return "Категория не указана"
+	}
+
+
 }
