@@ -4,8 +4,9 @@ type Transaction struct {
 	Id     string
 	Bill   int64
 	Time   int64
-	Mcc    string
+	MCC    string
 	Status string
+	Mcc    string
 }
 
 type Card struct {
@@ -27,7 +28,7 @@ func SumByMCC(transactions []Transaction, mcc []string) int64 {
 
 	for _, code := range mcc {
 		for _, t := range transactions {
-			if code == t.Mcc {
+			if code == t.MCC {
 				mmcSum += t.Bill
 			}
 		}
@@ -35,4 +36,15 @@ func SumByMCC(transactions []Transaction, mcc []string) int64 {
 
 	return mmcSum
 
+}
+
+func TranslateMCC(code string) string {
+	// представим, что mcc читается из файла (научимся позже)
+	mcc := map[string]string{
+		"5411": "Супермаркеты",
+		"5812": "Рестораны",
+
+	}
+
+	return mcc[code]
 }

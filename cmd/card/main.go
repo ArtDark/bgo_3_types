@@ -18,14 +18,14 @@ func main() {
 				Id:     "1",
 				Bill:   1_203_91,
 				Time:   1592594432,
-				Mcc:    "5812",
+				MCC:    "5812",
 				Status: "Valid",
 			},
 			card.Transaction{
 				Id:     "3",
 				Bill:   735_55,
 				Time:   1592667170,
-				Mcc:    "5411",
+				MCC:    "5411",
 				Status: "Valid",
 			},
 		},
@@ -44,9 +44,13 @@ func main() {
 	card.AddTransaction(masterPointer, transaction)
 	fmt.Println("MasterCard: ", master)
 
-	mcc := []string{"5411", "582"}
+	mcc := []string{"5411", "5812"}
 
 	cashBack := card.SumByMCC(master.Transactions, mcc)
 	fmt.Println("Cashback sum:", cashBack)
+
+
+	category := card.TranslateMCC(master.Transactions[0].MCC)
+	fmt.Println(category)
 
 }
