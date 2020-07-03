@@ -43,16 +43,14 @@ func TranslateMCC(code string) string {
 	mcc := map[string]string{
 		"5411": "Супермаркеты",
 		"5812": "Рестораны",
-
 	}
 
-	value, ok := mcc[code]
+	const errCategoryUndef = "Категория не указана"
 
-	if ok {
+	if value, ok := mcc[code]; ok {
 		return value
-	} else {
-		return "Категория не указана"
 	}
 
+	return errCategoryUndef
 
 }
