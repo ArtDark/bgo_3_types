@@ -1,14 +1,20 @@
+// Package for work with user cards
 package card
 
+import (
+	"fmt"
+)
+
+// User transaction structure
 type Transaction struct {
 	Id     string
 	Bill   int64
 	Time   int64
 	MCC    string
 	Status string
-	Mcc    string
 }
 
+// User card structure
 type Card struct {
 	Id           int64
 	Issuer       string
@@ -19,10 +25,12 @@ type Card struct {
 	Transactions []Transaction
 }
 
+// Function add new transaction
 func AddTransaction(card *Card, transaction Transaction) {
 	card.Transactions = append(card.Transactions, transaction)
 }
 
+// Function sum bill transactions by MMC
 func SumByMCC(transactions []Transaction, mcc []string) int64 {
 	var mmcSum int64
 
@@ -38,19 +46,46 @@ func SumByMCC(transactions []Transaction, mcc []string) int64 {
 
 }
 
+// Function translate MMC code to human friendly language
 func TranslateMCC(code string) string {
-	// представим, что mcc читается из файла (научимся позже)
 	mcc := map[string]string{
 		"5411": "Супермаркеты",
 		"5812": "Рестораны",
 	}
 
-	const errCategoryUndef = "Категория не указана"
+	const ErrCategoryUndef = "Category undefined or absent"
 
 	if value, ok := mcc[code]; ok {
 		return value
 	}
 
-	return errCategoryUndef
+	return ErrCategoryUndef
 
+}
+
+// Function view last N transactions
+func LastNTransactions(card *Card, n int) []Transaction {
+
+	if len(card.Transactions) == 0 {
+		fmt.Println("Transactions is absent")
+		return nil
+	}
+
+	if n <= 0 {
+		fmt.Println("Bad num")
+		return nil
+	}
+
+	if n > len(card.Transactions) {
+		fmt.Println("Num is over range transactions")
+		return nil
+	}
+
+	t := card.Transactions // user transactions
+
+	for i, j := 0, len(t)-1; i < j; i, j = i+1, j-1 { //revert user transactions
+		t[i], t[j] = t[j], t[i]
+	}
+
+	return t[:n]
 }
